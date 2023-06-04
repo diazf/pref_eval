@@ -7,9 +7,9 @@ code to compute preference-based evaluation measures
 
 implementation of graded rpp as well as top-heavy rpp with inverse or DCG weighting.
 
-### Lexicographic Evaluation
+### [Lexicographic Recall](https://arxiv.org/abs/2302.11370)
 
-implementation of lexirecall and lexiprecision.
+implementation of lexirecall.
 
 
 ## Usage
@@ -34,7 +34,7 @@ optional arguments:
   --qrels QRELS, -R QRELS
                         qrels path
   --measure MEASURES, -m MEASURES
-                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision
+                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall
                         metric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k
   --measure_set MEASURE_SET, -M MEASURE_SET
                         preferences, all, none (default: all)
@@ -58,7 +58,4 @@ optional arguments:
                         generate per-query results
   --nosummary, -n       suppress the summary
 ```
-To generate an ordering of systems,
-```
-./preference_evaluation.py -q -n -R qrels.txt input.*.gz | ./pref_aggregate.py
-```
+
