@@ -65,7 +65,7 @@ optional arguments:
   --nosummary, -n       suppress the summary
 ```
 
-This will generate an ordering of runs using [MC4](https://dl.acm.org/doi/10.1145/371920.372165) or [Borda count](https://en.wikipedia.org/wiki/Borda_count).  
+This will generate an ordering of runs using [MC4](https://dl.acm.org/doi/10.1145/371920.372165) or [Borda count](https://en.wikipedia.org/wiki/Borda_count) (for preference-based evaluation) or mean metric value (for metric-based evaluation).  
 
 ## Citation
 For RPP,
