@@ -59,3 +59,34 @@ optional arguments:
   --nosummary, -n       suppress the summary
 ```
 
+## Citation
+For RPP,
+```
+@inproceedings{10.1145/3477495.3532033,
+author = {Diaz, Fernando and Ferraro, Andres},
+title = {Offline Retrieval Evaluation Without Evaluation Metrics},
+year = {2022},
+isbn = {9781450387323},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3477495.3532033},
+doi = {10.1145/3477495.3532033},
+booktitle = {Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+pages = {599–609},
+numpages = {11},
+keywords = {information retrieval, offline evaluation, recommender systems},
+location = {Madrid, Spain},
+series = {SIGIR '22}
+}
+```
+For lexirecall,
+```
+@misc{diaz2023recall,
+      title={Recall, Robustness, and Lexicographic Evaluation}, 
+      author={Fernando Diaz and Bhaskar Mitra},
+      year={2023},
+      eprint={2302.11370},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR}
+}
+```
