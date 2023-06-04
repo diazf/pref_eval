@@ -62,7 +62,7 @@ optional arguments:
 ## Citation
 For RPP,
 ```
-@inproceedings{10.1145/3477495.3532033,
+@inproceedings{diaz:rpp,
 author = {Diaz, Fernando and Ferraro, Andres},
 title = {Offline Retrieval Evaluation Without Evaluation Metrics},
 year = {2022},
@@ -81,7 +81,7 @@ series = {SIGIR '22}
 ```
 For lexirecall,
 ```
-@misc{diaz2023recall,
+@misc{diaz:lexirecall,
       title={Recall, Robustness, and Lexicographic Evaluation}, 
       author={Fernando Diaz and Bhaskar Mitra},
       year={2023},
