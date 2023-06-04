@@ -13,6 +13,8 @@ implementation of lexirecall.
 
 
 ## Usage
+
+### Computing Preferences
 Input qrels are assumed to be in standard four-column trec_eval format,
 ```
    <query id><subtopic id><document id><relevance grade>
@@ -46,6 +48,10 @@ optional arguments:
                         generate per-query results
   --nosummary, -n       suppress the summary
 ```
+
+This will generate a JSON file with each line containing either the measured preference value(s) between a pair of runs or the metric value(s) for a run.  Any summary lines (qid="all") will contain the mean measured preference between a pair of runs.  
+
+### Aggregating Preferences
 In order to aggregate preferences into an ordering of systems, use `pref_aggregate.py`,
 ```
 ./pref_aggregate.py [-h] [--prefs PREFS] [--query_eval_wanted] [--nosummary]
