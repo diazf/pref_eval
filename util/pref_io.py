@@ -1,10 +1,10 @@
 import json
-from measures.measures import is_measure
+from measures.measures import is_metric
 import sys
 import gzip
 
-Preferences = dict[str,dict[str,dict[str,float]]] # qid x metric x pair_tag 
-Measures = dict[str,dict[str,dict[str,float]]] # qid x metric x runid 
+Preferences = dict[str,dict[str,dict[str,float]]] # qid x pref x pair_tag 
+Metrics = dict[str,dict[str,dict[str,float]]] # qid x metric x runid 
 Rankings = dict[str,dict[str,list[str]]] # qid x metric x run x score
 
 def read_pp_line(line):
@@ -56,7 +56,7 @@ def read_prefs(path:str,metrics,current_sample,qids=None) -> Preferences:
                     retval[qid] = {}
                 pair_tag=f"{obj['runi']}:{obj['runj']}"
                 for metric in metrics:
-                    if not is_measure(metric):
+                    if not is_metric(metric):
                         preference:float = obj[metric]                
                         if metric not in retval[qid]:
                             retval[qid][metric] = {}
@@ -74,7 +74,7 @@ def read_prefs(path:str,metrics,current_sample,qids=None) -> Preferences:
                     retval[qid] = {}
                 pair_tag=f"{obj['runi']}:{obj['runj']}"
                 for metric in metrics:
-                    if not is_measure(metric):
+                    if not is_metric(metric):
                         preference:float = obj[metric]                
                         if metric not in retval[qid]:
                             retval[qid][metric] = {}
@@ -85,8 +85,8 @@ def read_prefs(path:str,metrics,current_sample,qids=None) -> Preferences:
         sys.exit()
     return retval
 
-def read_measures(path:str,metrics,current_sample,qids=None) -> Measures:
-    retval:Measures = {}
+def read_metrics(path:str,metrics,current_sample,qids=None) -> Metrics:
+    retval:Metrics = {}
     if is_gz_file(path):
         with gzip.open(path,"rt") as f:
             for line in f:
@@ -100,7 +100,7 @@ def read_measures(path:str,metrics,current_sample,qids=None) -> Measures:
                 if qid not in retval:
                     retval[qid] = {}
                 for metric in metrics:
-                    if is_measure(metric):
+                    if is_metric(metric):
                         meas:float = obj[metric]                
                         if metric not in retval[qid]:
                             retval[qid][metric] = {}
@@ -118,17 +118,41 @@ def read_measures(path:str,metrics,current_sample,qids=None) -> Measures:
                 if qid not in retval:
                     retval[qid] = {}
                 for metric in metrics:
-                    if is_measure(metric):
+                    if is_metric(metric):
                         meas:float = obj[metric]                
                         if metric not in retval[qid]:
                             retval[qid][metric] = {}
                         retval[qid][metric][run] = meas
     qids_read:list[str] = list(retval.keys())
     if (len(qids_read)==0):
-        sys.stderr.write("no queries with measure information found\n")
+        sys.stderr.write("no queries with metric information found\n")
         sys.exit()
     return retval
 
+def read_all_measure_names(path:str):
+    measures=set()
+    lines=0
+    if is_gz_file(path):
+        with gzip.open(path,"rt") as f:
+            for line in f:
+                obj = read_pp_line(line)
+                for k in obj.keys():
+                    if k not in ["qid","sample","type","runi","runj","run"]:
+                        measures.add(k)
+                lines = lines + 1
+                if lines >= 10:
+                    break
+    else:
+        with open(path, "r") as f:
+            for line in f:
+                obj = read_pp_line(line)
+                for k in obj.keys():
+                    if k not in ["qid","sample","type","runi","runj","run"]:
+                        measures.add(k)
+                lines = lines + 1
+                if lines >= 10:
+                    break
+    return list(measures)
 
 def get_query_rankings_from_preferences(prefs:Preferences) -> Rankings:
     retval:Rankings = {}
@@ -151,9 +175,9 @@ def get_query_rankings_from_preferences(prefs:Preferences) -> Rankings:
             retval[qid][metric] = ranking
     return retval
 
-def get_query_rankings_from_measures(measures:Measures) -> Rankings:
+def get_query_rankings_from_metrics(metrics:Metrics) -> Rankings:
     retval:Rankings = {}
-    for qid,v in measures.items():
+    for qid,v in metrics.items():
         for metric,vv in v.items():
             winrates: dict[str,float] = vv
             # print(winrates)

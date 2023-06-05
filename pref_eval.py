@@ -2,9 +2,9 @@
 import sys
 import argparse
 import random
-from measures.measures import compare
-from measures.measures import measure
-from measures.measures import is_measure
+from measures.measures import compute_preference
+from measures.measures import compute_metric
+from measures.measures import is_metric
 from util.relevance_vector import RelevanceVector
 import util.trec_io 
 from argparse import RawTextHelpFormatter
@@ -18,10 +18,10 @@ def get_prefs(sample:int, runs: dict[str,util.trec_io.Run],measures:list[str],pe
     for qid in qids:
         for i in range(len(runids)):
             runid_i:str = runids[i]
-            rv_i:relevance_vector.RelevanceVector = runs[runid_i][qid]
+            rv_i:RelevanceVector = runs[runid_i][qid]
             for j in range(i+1,len(runids)):
                 runid_j:str = runids[j]
-                rv_j:relevance_vector.RelevanceVector = runs[runid_j][qid]
+                rv_j:RelevanceVector = runs[runid_j][qid]
                 pair_tag = f"{runid_i}:{runid_j}"
                 if pair_tag not in retval:
                     retval[pair_tag] = {}
@@ -32,7 +32,7 @@ def get_prefs(sample:int, runs: dict[str,util.trec_io.Run],measures:list[str],pe
                 output_object["sample"] = sample
                 output_object["type"] = "preference"
                 for m in measures:
-                    pref:float = compare(rv_i,rv_j,m)
+                    pref:float = compute_preference(rv_i,rv_j,m)
                     if pref is None:
                         sys.stderr.write(f"ERROR: qid:{qid} runi:{runid_i} runj:{runid_j} sample:{sample} measure:{m}\n")
                         u = rv_i.vector()
@@ -58,16 +58,16 @@ def get_prefs(sample:int, runs: dict[str,util.trec_io.Run],measures:list[str],pe
                     print(json.dumps(output_object))
             if per_query:
                 output_object=None
-                rv:relevance_vector.RelevanceVector = runs[runid_i][qid]
+                rv:RelevanceVector = runs[runid_i][qid]
                 for m in measures:
-                    if is_measure(m):
+                    if is_metric(m):
                         if output_object is None:
                             output_object={}
                             output_object["qid"] = qid
                             output_object["run"] = runid_i
                             output_object["sample"] = sample
                             output_object["type"] = "metric"
-                        meas:float = measure(rv,m)
+                        meas:float = compute_metric(rv,m)
                         output_object[m] = meas
                 if output_object is not None:
                     print(json.dumps(output_object))
