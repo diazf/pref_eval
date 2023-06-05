@@ -84,7 +84,6 @@ doi = {10.1145/3477495.3532033},
 booktitle = {Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
 pages = {599–609},
 numpages = {11},
-keywords = {information retrieval, offline evaluation, recommender systems},
 location = {Madrid, Spain},
 series = {SIGIR '22}
 }
