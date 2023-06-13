@@ -125,3 +125,6 @@ For lexiprecision,
       primaryClass={cs.IR}
 }
 ```
+
+## Contact
+[Fernando Diaz](mailto:diazf@acm.org)
