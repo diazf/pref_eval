@@ -20,7 +20,7 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Recall@k, R-Precision |
 | Best Case   | [Lexicographic Precision](https://arxiv.org/abs/XXX)        | Reciprocal Rank |
 
-The diagram below summarizes the preferences considered for each method.  In particular, lexicographic evaluation breaks ties based on the lowest (lexirecall) or highest (lexiprecision) recall level with a difference in position.  
+The diagram below summarizes the preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
 <img src="https://github.com/diazf/pref_eval/assets/75877/7b32d4da-6e19-430d-a7fa-6b2e6cf397df" alt="diagram of rank positions considered for preference-based evaluation" width="400"/></p>
 
