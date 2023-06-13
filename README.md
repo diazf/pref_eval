@@ -52,7 +52,7 @@ optional arguments:
   --qrels QRELS, -R QRELS
                         qrels path
   --measure MEASURES, -m MEASURES
-                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision
+                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision, rrlexiprecision
                         metric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k
   --measure_set MEASURE_SET, -M MEASURE_SET
                         preferences, all, none (default: all)
