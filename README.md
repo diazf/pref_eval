@@ -13,7 +13,7 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 
 | Aggregation      | Preference | Metric-Based Analog |
 | ----------- | ----------- | ----------- |
-| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | 
+| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision, NDCG | 
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Recall@k, R-Precision |
 | Best Case   | [Lexicographic Precision](https://arxiv.org/abs/XXX)        | Reciprocal Rank |
 
