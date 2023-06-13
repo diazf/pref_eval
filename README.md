@@ -25,7 +25,7 @@ The diagram below summarizes the preferences considered for each method.  We com
 If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
 
 ### When to Use Preference-Based Evaluation
-Empirical evidence suggests that preference-based evaluation is substantially more sensitive than traditional metric-based evaluation.  So, preference-based evaluation can adopted when metrics are saturated \[e.g., [Voorhees et al. 2022](https://doi.org/10.1145/3477495.3531728)\].  However, we recommend complementing multiple evaluations to assess systems.  
+Empirical evidence suggests that preference-based evaluation is substantially more sensitive than traditional metric-based evaluation.  So, preference-based evaluation can adopted when metrics are saturated (e.g., \[[Voorhees et al. 2022](https://doi.org/10.1145/3477495.3531728)\]).  However, we recommend complementing multiple evaluations to assess systems.  
 
 Preference-based evaluation works particularly well with deep rankings, so that it can better compare positions of relevant items.  The exact depth depends on context but, in general, the closer you can get to knowing the positions of all relevant items, the better. 
 
