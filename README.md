@@ -1,15 +1,27 @@
 preference-based evaluation
 =====
+## Introduction
+Preference-based evaluation is a method for comparing rankings from multiple systems that is substantially more sensitive that existing metric-based approaches.  
 
-code to compute preference-based evaluation measures
+### Disaggregating Evaluation Metrics
 
-### [Recall-Paired Preference](https://841.io/doc/rpp.pdf)
+For a fixed ranked list, traditional evaluation metrics compute the performance of a system according to the expected behavior over distribution of possible user behavior \[[Robertson 2008](https://doi.org/10.1145/1390334.1390453); [Sakai and Robertson 2008](https://research.nii.ac.jp/ntcir/workshop/OnlineProceedings7/pdf/EVIA2008/07-EVIA2008-SakaiT.pdf); [Carterette 2011](https://doi.org/10.1145/2009916.2010037)\].  Interpreting evaluation metrics in this way allows us to disaggregate these metrics and look at the performance for specific types of users.  For example, we can disaggregate average precision into the utility for users associated with each recall level.  
 
-implementation of graded rpp as well as top-heavy rpp with inverse or DCG weighting.
+### Preference-Based Evaluation
 
-### [Lexicographic Recall](https://arxiv.org/abs/2302.11370)
+We can use the decomposed evaluation metrics in order to compare two rankings for the same query.  For example, for users interested in exactly one relevant item, which ranking would be preferred?  For users interested in exactly two relevant items, which ranking would be preferred?  We can then aggregate these preferences between systems in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what you want to measure.  We can simply look at the average preference across recall levels and recover a preference-based analog to average precision.  Comparing the worst off users in both rankings recovers a preference-based analog to recall metrics. Comparing the best off users in both rankings recovers a preference-based analog to precision metrics. 
 
-implementation of lexirecall.
+| Aggregation      | Preference | Metric-Based Analog |
+| ----------- | ----------- | ----------- |
+| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision, NDCG | 
+| Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Recall@k, R-Precision |
+| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/XXX)        | Reciprocal Rank |
+
+### Evaluating More Than One System
+If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
+
+### When to Use Preference-Based Evaluation
+Empirical evidence suggests that preference-based evaluation is substantially more sensitive than traditional metric-based evaluation.  So, preference-based evaluation can adopted when metrics are saturated \[e.g., [Voorhees et al. 2022](https://doi.org/10.1145/3477495.3531728)\].  However, we strongly encourage complementing multiple evaluations to assess systems.  
 
 
 ## Usage
@@ -36,7 +48,7 @@ optional arguments:
   --qrels QRELS, -R QRELS
                         qrels path
   --measure MEASURES, -m MEASURES
-                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall
+                        preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision
                         metric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k
   --measure_set MEASURE_SET, -M MEASURE_SET
                         preferences, all, none (default: all)
@@ -95,6 +107,17 @@ For lexirecall,
       author={Fernando Diaz and Bhaskar Mitra},
       year={2023},
       eprint={2302.11370},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR}
+}
+```
+For lexiprecision,
+```
+@misc{diaz:lexiprecision,
+      title={Best-Case Retrieval Evaluation: Improving the Sensitivity of Reciprocal Rank with Lexicographic Precision}, 
+      author={Fernando Diaz},
+      year={2023},
+      eprint={XXX},
       archivePrefix={arXiv},
       primaryClass={cs.IR}
 }
