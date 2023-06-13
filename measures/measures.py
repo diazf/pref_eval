@@ -15,8 +15,8 @@ def compute_preference(x: RelevanceVector,y: RelevanceVector,preference: str) ->
         return lexirecall(xx,yy)
     if preference == "lexiprecision" or preference == "sgnLP":
         return lexiprecision(xx,yy)
-    if preference == "softlexiprecision" or preference == "rrLP":
-        return softlexiprecision(xx,yy)
+    if preference == "rrlexiprecision" or preference == "rrLP":
+        return rrlexiprecision(xx,yy)
     if preference == "rpp":
         return recall_paired_preference(x,y,PositionWeighting.UNIFORM)
     if preference == "invrpp":

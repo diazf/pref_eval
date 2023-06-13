@@ -78,8 +78,8 @@ def get_prefs(sample:int, runs: dict[str,util.trec_io.Run],measures:list[str],pe
 
 
 def get_measures(m,ms):
-    preference_measures = ["rpp","invrpp","dcgrpp","lexirecall","lexiprecision"]
-    all_measures = ["rpp","invrpp","dcgrpp","lexirecall","lexiprecision","ap","rbp","rr","ndcg","rp","p@1","p@10","r@1","r@10"]
+    preference_measures = ["rpp","invrpp","dcgrpp","lexirecall","lexiprecision","rrlexiprecision"]
+    all_measures = ["rpp","invrpp","dcgrpp","lexirecall","lexiprecision","rrlexiprecision","ap","rbp","rr","ndcg","rp","p@1","p@10","r@1","r@10"]
 
     measures:list[str] = m if m is not None else []
     measure_set:str = (ms if ms != "none" else "all") if len(measures)==0 else ""
@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
     parser:argparse.ArgumentParser = argparse.ArgumentParser(sys.argv[0], formatter_class=RawTextHelpFormatter)
     parser.add_argument("--qrels", "-R", dest="qrels", help="qrels path", required=True)
-    parser.add_argument("--measure", "-m", dest='measures', help="preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision\nmetric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k", action='append')
+    parser.add_argument("--measure", "-m", dest='measures', help="preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision, rrlexiprecision\nmetric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k", action='append')
     parser.add_argument("--measure_set", "-M", dest='measure_set', help="preferences, all, none", default='none')
     parser.add_argument("--binary_relevance", "-b", dest='binary_relevance', help="minimum relevance grade to generate binary labels")
     parser.add_argument("--relevance_floor", "-f", dest='relevance_floor', help="any below this value is 0")

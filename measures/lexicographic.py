@@ -39,7 +39,7 @@ def lexiprecision(x: list[int],y: list[int]) -> float:
             return -1
     return 0
 
-def softlexiprecision(x: list[int],y: list[int]) -> float:
+def rrlexiprecision(x: list[int],y: list[int]) -> float:
     m:int = len(x)
     for i in range(m):
         rrx = 0.0 if x[i] is None else 1.0 / float(x[i])
