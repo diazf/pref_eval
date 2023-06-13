@@ -29,19 +29,20 @@ Lexicographic evaluation assumes binary relevance, which may not be appropriate 
 
 ## Usage
 
-### Computing Preferences
-Input qrels are assumed to be in standard four-column trec_eval format,
+### Data
+Ground truth relevance information (i.e., "qrels") is assumed to be in standard four-column trec_eval format,
 ```
    <query id><subtopic id><document id><relevance grade>
 ```
-where subtopic id is a base 1 identifier (or "0"/"Q0" if there are no subtopic labels) and relevance grade is ordinal with <=0 indicating nonrelevance.  If a query has no documents with relevance grade >0, it is removed from the evaluation.
+where subtopic id is a base 1 identifier (or "0"/"Q0" if there are no subtopic labels); if you are using this outside of the TREC context, you can just use "0" for the second column.  The relevance grade is ordinal with <=0 indicating nonrelevance.  If a query has no documents with relevance grade >0, it is removed from the evaluation.
 
-Input runs are assumed to be in standard six-column trec_eval format,
+System runs are assumed to be in standard six-column trec_eval format, with one system per file,
 ```
    <query id><iteration><document id><rank><score>[<run id>]   
 ```
-where iteration, rank, and run id are ignored (rank is computed from the score). Any missing queries in a run file are assumed to be worst-case performance.  Any additional queries in a run file are ignored.
+where iteration, rank, and run id are ignored (rank is computed from the score); if you are using this outside of the TREC context, you can put "0" in each of these columns.  The run id used for output is the basename of the system run file, removing "input." and ".gz".  Any missing queries in a run file are assumed to be worst-case performance.  Any additional queries in a run file are ignored.
 
+### Computing Preferences
 In order to generate all pairs of preferences between runs, use `pref_eval.py`,
 ```
 ./pref_eval.py [-h] --qrels QRELS [--measure MEASURES] [--measure_set MEASURE_SET] [--binary_relevance BINARY_RELEVANCE] [--query_eval_wanted] [--nosummary] RUNFILE_0 RUNFILE_1 ...
