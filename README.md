@@ -19,7 +19,7 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 
 The diagram below summarizes the preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
-<img src="https://github.com/diazf/pref_eval/assets/75877/23926f1b-5cc7-4099-b299-94af03c2e5c8" alt="diagram of rank positions considered for preference-based evaluation" width="600"/></p>
+<img src="https://github.com/diazf/pref_eval/assets/75877/736a544c-5987-466e-a73c-ff1827d586c9" alt="diagram of rank positions considered for preference-based evaluation" width="600"/></p>
 
 ### Evaluating More Than One System
 If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
