@@ -1,5 +1,8 @@
 preference-based evaluation
 =====
+
+
+
 ## Introduction
 Preference-based evaluation is a method for comparing rankings from multiple systems that is substantially more sensitive that existing metric-based approaches.  
 
@@ -16,6 +19,10 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 | Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision, NDCG | 
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Recall@k, R-Precision |
 | Best Case   | [Lexicographic Precision](https://arxiv.org/abs/XXX)        | Reciprocal Rank |
+
+The diagram below summarizes the preferences considered for each method.  In particular, lexicographic evaluation breaks ties based on the lowest (lexirecall) or highest (lexiprecision) recall level with a difference in position.  
+<p align="center">
+<img src="https://github.com/diazf/pref_eval/assets/75877/7b32d4da-6e19-430d-a7fa-6b2e6cf397df" alt="diagram of rank positions considered for preference-based evaluation" width="400"/></p>
 
 ### Evaluating More Than One System
 If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
