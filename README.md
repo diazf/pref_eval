@@ -17,7 +17,7 @@ We can then aggregate the collection of sub-population preferences in order to c
 | ----------- | ----------- | ----------- | ----------- |
 | Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | Normalized Discounted Cumulative Gain |
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Type 3 Expected Search Length | Recall@k, R-Precision |
-| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank | Success@k, Precision@k, Rank Biased Precision (&gamma;=0.50) |
+| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank | Success@k, Precision@k |
 
 The diagram below summarizes the sub-population preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
