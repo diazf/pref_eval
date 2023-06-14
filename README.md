@@ -64,8 +64,6 @@ optional arguments:
                         preferences, all, none (default: all)
   --binary_relevance BINARY_RELEVANCE, -b BINARY_RELEVANCE
                         minimum relevance grade to generate binary labels (default: original grades)
-  --relevance_floor RELEVANCE_FLOOR, -f RELEVANCE_FLOOR
-                        any below this value is 0 (default: no floor)
   --query_eval_wanted, -q
                         generate per-query results
   --nosummary, -n       suppress the summary
