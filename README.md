@@ -1,15 +1,17 @@
 preference-based evaluation
 =====
 ## Introduction
-Preference-based evaluation is a method for comparing rankings from multiple systems that is substantially more sensitive that existing metric-based approaches.  
+Preference-based evaluation is a method for comparing rankings from multiple systems that is substantially more sensitive that existing metric-based approaches.  This makes it particularly appropriate in situations where existing metric-based evaluation results in a number per-query ties as a result of, for example, properties of the evaluation metric, the evaluation data, or systems themselves.  The theory behind our version of preference-based relies on modeling possible sub-populations of users issuing the same request, allowing us to connect it to work in fairness and robustness. We summarize the approach below but details are more fully presented in our [publications](#citation).  Or, you can skip to [code usage](#usage).  
 
-### Disaggregating Evaluation Metrics
+### Motivation
 
-For a fixed ranked list, traditional evaluation metrics compute the performance of a system according to the expected behavior over distribution of possible user behavior \[[Robertson 2008](https://doi.org/10.1145/1390334.1390453); [Sakai and Robertson 2008](https://research.nii.ac.jp/ntcir/workshop/OnlineProceedings7/pdf/EVIA2008/07-EVIA2008-SakaiT.pdf); [Carterette 2011](https://doi.org/10.1145/2009916.2010037)\].  Interpreting evaluation metrics in this way allows us to disaggregate these metrics and look at the performance for specific types of users.  For example, we can disaggregate average precision into the utility for users associated with each recall level.  
+In order to understand the intuition behind preference-based evaluation, we first need to understand the implicit sub-populations behind traditional evaluation metrics like average precision.  For a fixed ranked list, traditional evaluation metrics compute the performance of a system according to the expected behavior over distribution of possible user behavior \[[Robertson 2008](https://doi.org/10.1145/1390334.1390453); [Sakai and Robertson 2008](https://research.nii.ac.jp/ntcir/workshop/OnlineProceedings7/pdf/EVIA2008/07-EVIA2008-SakaiT.pdf); [Carterette 2011](https://doi.org/10.1145/2009916.2010037)\].  Interpreting evaluation metrics in this way allows us to disaggregate these metrics and look at the performance for specific types of users.  For example, we can disaggregate average precision into the utility for sub-populations of users associated with each recall level (i.e., the sub-population interested in exactly one relevant item, the sub-population interested in exactly two relevant items, ...).  
 
 ### Preference-Based Evaluation
 
-We can use the decomposed evaluation metrics in order to compare two rankings for the same query.  For example, for users interested in exactly one relevant item, which ranking would be preferred?  For users interested in exactly two relevant items, which ranking would be preferred?  We can then aggregate these preferences between systems in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what you want to measure.  We can simply look at the average preference across recall levels and recover a preference-based analog to average precision.  Comparing the worst off users in both rankings recovers a preference-based analog to recall, robustness, and certain fairness metrics. Comparing the best off users in both rankings recovers a preference-based analog to precision metrics. 
+We can use the decomposed evaluation metrics in order to compare two rankings for the same query for each implicit sub-population.  For example, we can ask for users interested in exactly one relevant item, which ranking would be preferred?  Or, for users interested in exactly two relevant items, which ranking would be preferred?  And so forth.  These preferences can be easily computed by adopting the principle that inspecting fewer items to satisfy a sub-population's recall requirements is preferable.  This is a relatively weak assumption and underlies most existing evaluation metrics.  
+
+We can then aggregate the collection of sub-population preferences in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what we want to measure.  We can simply look at the average preference across sub-populations and recover a preference-based analog to average precision.  Comparing the worst off sub-population in both rankings recovers a preference-based analog to recall, robustness, and certain fairness metrics. Comparing the best off sub-population in both rankings recovers a preference-based analog to precision metrics.  We summary these correspondences in the table below.
 
 | Aggregation      | Preference | Metric-Based Analog | Other Related Metrics |
 | ----------- | ----------- | ----------- | ----------- |
@@ -17,14 +19,14 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Type 3 Expected Search Length | Recall@k, R-Precision |
 | Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank | Success@k, Precision@k, Rank Biased Precision (&gamma;=0.50) |
 
-The diagram below summarizes the preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
+The diagram below summarizes the sub-population preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
 <img src="https://github.com/diazf/pref_eval/assets/75877/736a544c-5987-466e-a73c-ff1827d586c9" alt="diagram of rank positions considered for preference-based evaluation" width="600"/></p>
 
 ### Evaluating More Than One System
 If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
 
-### When to Use Preference-Based Evaluation
+### When and How to Use Preference-Based Evaluation
 Empirical evidence suggests that preference-based evaluation is substantially more sensitive than traditional metric-based evaluation.  So, preference-based evaluation can adopted when metrics are saturated (e.g., \[[Voorhees et al. 2022](https://doi.org/10.1145/3477495.3531728)\]).  However, we recommend complementing multiple evaluations to assess systems.  
 
 Preference-based evaluation works particularly well with deep rankings, so that it can better compare positions of relevant items.  The exact depth depends on context but, in general, the closer you can get to knowing the positions of all relevant items, the better. 
@@ -90,7 +92,7 @@ optional arguments:
 This will generate an ordering of runs using [MC4](https://dl.acm.org/doi/10.1145/371920.372165) or [Borda count](https://en.wikipedia.org/wiki/Borda_count) (for preference-based evaluation) or mean metric value (for metric-based evaluation).  
 
 ## Citation
-For RPP,
+For [Recall-Paired Preference](https://841.io/doc/rpp.pdf),
 ```
 @inproceedings{diaz:rpp,
 author = {Diaz, Fernando and Ferraro, Andres},
@@ -108,7 +110,7 @@ location = {Madrid, Spain},
 series = {SIGIR '22}
 }
 ```
-For lexirecall,
+For [Lexicographic Recall](https://arxiv.org/abs/2302.11370),
 ```
 @misc{diaz:lexirecall,
       title={Recall, Robustness, and Lexicographic Evaluation}, 
@@ -119,7 +121,7 @@ For lexirecall,
       primaryClass={cs.IR}
 }
 ```
-For lexiprecision,
+For [Lexicographic Precision](https://arxiv.org/abs/2306.07908),
 ```
 @misc{diaz:lexiprecision,
       title={Best-Case Retrieval Evaluation: Improving the Sensitivity of Reciprocal Rank with Lexicographic Precision}, 
