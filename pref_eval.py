@@ -106,7 +106,7 @@ if __name__ == '__main__':
     parser.add_argument("--qrels", "-R", dest="qrels", help="qrels path", required=True)
     parser.add_argument("--measure", "-m", dest='measures', help="preference-based evaluation: rpp, invrpp, dcgrpp, lexirecall, lexiprecision, rrlexiprecision\nmetric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k", action='append')
     parser.add_argument("--measure_set", "-M", dest='measure_set', help="preferences, all, none", default='none')
-    parser.add_argument("--binary_relevance", "-b", dest='binary_relevance', help="minimum relevance grade to generate binary labels")
+    parser.add_argument("--binary_relevance", "-b", dest='binary_relevance', help="binary relevance based on supplied grade (i.e., item is considered relevant if its grade is >= the supplied grade; non-relevant otherwise).")
     parser.add_argument("--relevance_floor", "-f", dest='relevance_floor', help="any below this value is 0")
     parser.add_argument("--query_eval_wanted", "-q", dest='query_eval_wanted', help="generate per-query results", action='store_true', default=False)
     parser.add_argument("--nosummary", "-n", dest='nosummary', help="suppress the summary", action='store_true', default=False)

@@ -51,7 +51,7 @@ where iteration, rank, and run id are ignored (rank is computed from the score);
 ### Computing Preferences
 In order to generate all pairs of preferences between runs, use `pref_eval.py`,
 ```
-./pref_eval.py [-h] --qrels QRELS [--measure MEASURES] [--measure_set MEASURE_SET] [--binary_relevance BINARY_RELEVANCE] [--query_eval_wanted] [--nosummary] RUNFILE_0 RUNFILE_1 ...
+./pref_eval.py [-h] --qrels QRELS [--measure MEASURES] [--measure_set MEASURE_SET] [--binary_relevance INT] [--query_eval_wanted] [--nosummary] RUNFILE_0 RUNFILE_1 ...
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -62,8 +62,8 @@ optional arguments:
                         metric-based evaluation: ap, rbp, rr, ndcg, rp, p@k, r@k
   --measure_set MEASURE_SET, -M MEASURE_SET
                         preferences, all, none (default: all)
-  --binary_relevance BINARY_RELEVANCE, -b BINARY_RELEVANCE
-                        minimum relevance grade to generate binary labels (default: original grades)
+  --binary_relevance INT, -b INT
+                        item is discretized to 1 (relevant) if it's grade >= GRADE; 0 otherwise (default: use original grades)
   --query_eval_wanted, -q
                         generate per-query results
   --nosummary, -n       suppress the summary
