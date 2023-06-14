@@ -11,11 +11,11 @@ For a fixed ranked list, traditional evaluation metrics compute the performance 
 
 We can use the decomposed evaluation metrics in order to compare two rankings for the same query.  For example, for users interested in exactly one relevant item, which ranking would be preferred?  For users interested in exactly two relevant items, which ranking would be preferred?  We can then aggregate these preferences between systems in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what you want to measure.  We can simply look at the average preference across recall levels and recover a preference-based analog to average precision.  Comparing the worst off users in both rankings recovers a preference-based analog to recall, robustness, and certain fairness metrics. Comparing the best off users in both rankings recovers a preference-based analog to precision metrics. 
 
-| Aggregation      | Preference | Metric-Based Analog |
-| ----------- | ----------- | ----------- |
-| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | 
-| Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Type 3 Expected Search Length, Recall@k, R-Precision |
-| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank |
+| Aggregation      | Preference | Metric-Based Analog | Other Related Metrics |
+| ----------- | ----------- | ----------- | ----------- |
+| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | Normalized Discounted Cumulative Gain |
+| Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | Type 3 Expected Search Length | Recall@k, R-Precision |
+| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank | Success@k, Precision@k, Rank Biased Precision (&gamma;=0.50) |
 
 The diagram below summarizes the preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank) and worst case (Type 3 Expected Search Length \[[Cooper 1968](https://doi.org/10.1002/asi.5090190108)\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
