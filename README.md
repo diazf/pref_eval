@@ -28,28 +28,28 @@ We can then aggregate the collection of sub-population preferences in order to c
       <td rowspan="2">Other Related Metrics</td>
   </tr>
   <tr>
-    <td>Position-Based</td>
     <td>Utility-Based</td>
+    <td>Position-Based</td>
   </tr>
   <tr>
     <td>Average Case</td>
     <td><a href="https://841.io/doc/rpp.pdf">Recall-Paired Preference</a></td>
-    <td><a href="https://sigir.org/files/museum/pub-07/III-1.pdf">Recall Error</a></td>
     <td>Average Precision</td>
+    <td><a href="https://sigir.org/files/museum/pub-07/III-1.pdf">Recall Error</a></td>
     <td><a href="https://doi.org/10.1145/582415.582418">Normalized Discounted Cumulative Gain</a></td>
   </tr>
   <tr>
     <td>Worst Case</td>
     <td><a href="https://arxiv.org/abs/2302.11370">Lexicographic Recall</a></td>
-    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 3 Expected Search Length</a></td>
     <td><a href="https://arxiv.org/abs/2302.11370">Total Search Efficiency</a></td>
+    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 3 Expected Search Length</a></td>
     <td>Recall@k, R-Precision</td>
   </tr>
   <tr>
     <td>Best Case</td>
     <td><a href="https://arxiv.org/abs/2306.07908">Lexicographic Precision</a></td>
-    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 1 Expected Search Length</a></td>
     <td>Reciprocal Rank</td>
+    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 1 Expected Search Length</a></td>
     <td>Precision@k, Success@k</td>
   </tr>
 </table>
