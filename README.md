@@ -13,13 +13,6 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 
 We can then aggregate the collection of sub-population preferences in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what we want to measure.  We can simply look at the average preference across sub-populations and recover a preference-based analog to average precision.  Comparing the worst off sub-population in both rankings recovers a preference-based analog to recall, robustness, and certain fairness metrics. Comparing the best off sub-population in both rankings recovers a preference-based analog to precision metrics.  We summary these correspondences in the table below.
 
-<!-- | Aggregation      | Preference | Metric-Based Analog | Other Related Metrics |
-| ----------- | ----------- | ----------- | ----------- |
-| Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | [Normalized Discounted Cumulative Gain](https://doi.org/10.1145/582415.582418) |
-| Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | [Total Search Efficiency](https://arxiv.org/abs/2302.11370), [Type 3 Expected Search Length](https://doi.org/10.1002/asi.5090190108) | Recall@k, R-Precision |
-| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank, [Type 1 Expected Search Length](https://doi.org/10.1002/asi.5090190108) | Success@k, Precision@k | -->
-
-
 <table>
   <tr>
       <td rowspan="2">Aggregation</td>
@@ -57,7 +50,7 @@ We can then aggregate the collection of sub-population preferences in order to c
 
 The diagram below summarizes the sub-population preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank, Type 1 Expected Search Length) and worst case (Type 3 Expected Search Length\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
-<img src="https://github.com/diazf/pref_eval/assets/75877/736a544c-5987-466e-a73c-ff1827d586c9" alt="diagram of rank positions considered for preference-based evaluation" width="600"/></p>
+<img src="https://github.com/diazf/pref_eval/assets/75877/b0255084-538a-453f-9a18-5a654866d18c" alt="diagram of rank positions considered for preference-based evaluation" width="600"/></p>
 
 ### Evaluating More Than One System
 If we are only evaluating a pair of systems over multiple queries, we can average the per-query preferences to compute a final ordering.  If we are evaluating multiple systems over one query and our preference-based evaluation is transitive (e.g., lexicographic preferences), then we compute a simple sort; if our preference-based evaluation is not transitive (e.g., RPP), then we can compute the win-rate as a simple aggregation.  If we are evaluating multiple systems over multiple queries, we need to aggregate preferences using methods from rank aggregation \[[Dwork et al. 2001](https://doi.org/10.1145/371920.372165)\].  
