@@ -22,16 +22,14 @@ We can then aggregate the collection of sub-population preferences in order to c
 
 <table>
   <tr>
-    <td colspan="2"></td>
-    <td colspan="2">Metric-Based Analog</td>
-    <td></td>
+      <td rowspan="2">Aggregation</td>
+      <td rowspan="2">Preference</td>
+      <td colspan="2", align="center">Metric-Based Analog</td>
+      <td rowspan="2">Other Related Metrics</td>
   </tr>
   <tr>
-    <td>Aggregation</td>
-    <td>Preference</td>
     <td>Position-Based</td>
     <td>Utility-Based</td>
-    <td>Other Related Metrics</td>
   </tr>
   <tr>
     <td>Average Case</td>
