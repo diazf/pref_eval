@@ -13,11 +13,49 @@ We can use the decomposed evaluation metrics in order to compare two rankings fo
 
 We can then aggregate the collection of sub-population preferences in order to compute a final preference between the rankings. How we aggregate preferences for two rankings depends on what we want to measure.  We can simply look at the average preference across sub-populations and recover a preference-based analog to average precision.  Comparing the worst off sub-population in both rankings recovers a preference-based analog to recall, robustness, and certain fairness metrics. Comparing the best off sub-population in both rankings recovers a preference-based analog to precision metrics.  We summary these correspondences in the table below.
 
-| Aggregation      | Preference | Metric-Based Analog | Other Related Metrics |
+<!-- | Aggregation      | Preference | Metric-Based Analog | Other Related Metrics |
 | ----------- | ----------- | ----------- | ----------- |
 | Average Case      | [Recall-Paired Preference](https://841.io/doc/rpp.pdf)       | Average Precision | [Normalized Discounted Cumulative Gain](https://doi.org/10.1145/582415.582418) |
 | Worst Case   | [Lexicographic Recall](https://arxiv.org/abs/2302.11370)        | [Total Search Efficiency](https://arxiv.org/abs/2302.11370), [Type 3 Expected Search Length](https://doi.org/10.1002/asi.5090190108) | Recall@k, R-Precision |
-| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank, [Type 1 Expected Search Length](https://doi.org/10.1002/asi.5090190108) | Success@k, Precision@k |
+| Best Case   | [Lexicographic Precision](https://arxiv.org/abs/2306.07908)        | Reciprocal Rank, [Type 1 Expected Search Length](https://doi.org/10.1002/asi.5090190108) | Success@k, Precision@k | -->
+
+
+<table>
+  <tr>
+    <td colspan="2"></td>
+    <td colspan="2">Metric-Based Analog</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Aggregation</td>
+    <td>Preference</td>
+    <td>Position-Based</td>
+    <td>Utility-Based</td>
+    <td>Other Related Metrics</td>
+  </tr>
+  <tr>
+    <td>Average Case</td>
+    <td><a href="https://841.io/doc/rpp.pdf">Recall-Paired Preference</a></td>
+    <td><a href="https://sigir.org/files/museum/pub-07/III-1.pdf">Recall Error</a></td>
+    <td>Average Precision</td>
+    <td><a href="https://doi.org/10.1145/582415.582418">Normalized Discounted Cumulative Gain</a></td>
+  </tr>
+  <tr>
+    <td>Worst Case</td>
+    <td><a href="https://arxiv.org/abs/2302.11370">Lexicographic Recall</a></td>
+    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 3 Expected Search Length</a></td>
+    <td><a href="https://arxiv.org/abs/2302.11370">Total Search Efficiency</a></td>
+    <td>Recall@k, R-Precision</td>
+  </tr>
+  <tr>
+    <td>Best Case</td>
+    <td><a href="https://arxiv.org/abs/2306.07908">Lexicographic Precision</a></td>
+    <td><a href="https://doi.org/10.1002/asi.5090190108">Type 1 Expected Search Length</a></td>
+    <td>Reciprocal Rank</td>
+    <td>Precision@k, Success@k</td>
+  </tr>
+</table>
+
 
 The diagram below summarizes the sub-population preferences considered for each method.  We compare non-lexicographic best case (reciprocal rank, Type 1 Expected Search Length) and worst case (Type 3 Expected Search Length\]) with their lexicographic counterparts, demonstrating how they break ties.
 <p align="center">
