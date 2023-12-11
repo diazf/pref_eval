@@ -129,19 +129,19 @@ This will generate an ordering of runs using [MC4](https://dl.acm.org/doi/10.114
 For [Recall-Paired Preference](https://841.io/doc/rpp.pdf),
 ```
 @inproceedings{diaz:rpp,
-author = {Diaz, Fernando and Ferraro, Andres},
-title = {Offline Retrieval Evaluation Without Evaluation Metrics},
-year = {2022},
-isbn = {9781450387323},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3477495.3532033},
-doi = {10.1145/3477495.3532033},
-booktitle = {Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
-pages = {599–609},
-numpages = {11},
-location = {Madrid, Spain},
-series = {SIGIR '22}
+      author = {Diaz, Fernando and Ferraro, Andres},
+      title = {Offline Retrieval Evaluation Without Evaluation Metrics},
+      year = {2022},
+      isbn = {9781450387323},
+      publisher = {Association for Computing Machinery},
+      address = {New York, NY, USA},
+      url = {https://doi.org/10.1145/3477495.3532033},
+      doi = {10.1145/3477495.3532033},
+      booktitle = {Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+      pages = {599–609},
+      numpages = {11},
+      location = {Madrid, Spain},
+      series = {SIGIR '22}
 }
 ```
 For [Lexicographic Recall](https://arxiv.org/abs/2302.11370),
@@ -157,14 +157,16 @@ For [Lexicographic Recall](https://arxiv.org/abs/2302.11370),
 ```
 For [Lexicographic Precision](https://arxiv.org/abs/2306.07908),
 ```
-@misc{diaz:lexiprecision,
-      title={Best-Case Retrieval Evaluation: Improving the Sensitivity of Reciprocal Rank with Lexicographic Precision}, 
-      author={Fernando Diaz},
-      year={2023},
-      eprint={2306.07908},
-      archivePrefix={arXiv},
-      primaryClass={cs.IR}
+@inproceedings{diaz:lexiprecision,
+      author = {Diaz, Fernando},
+      title = {Best-Case Retrieval Evaluation: Improving the Sensitivity of Reciprocal Rank with Lexicographic Precision},
+      year = {2023},
+      url = {https://doi.org/10.20736/0002001353},
+      doi = {10.20736/0002001353},
+      booktitle = {Proceedings of the Tenth International Workshop on Evaluating Information Access (EVIA 2023)},
+      location = {Tokyo, Japan}
 }
+
 ```
 
 ## Contact
