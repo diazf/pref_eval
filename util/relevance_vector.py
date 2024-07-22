@@ -73,7 +73,7 @@ class RelevanceVector:
         if len(self.grades) == 0:
             sys.stderr.write(f"no grade information for qid: {self.qid}\n")
         grade = min(self.grades) if grade is None else grade
-        rel_rel: int = 0
+        rel_ret: int = 0
         for pos in self.positions:
             if pos.is_valid(grade,subtopic):
                 if (pos.position is not None):
