@@ -33,6 +33,7 @@ class RelevanceVector:
     subtopics:list[int] = []
     dids:list[str] = []
     grade_histogram = {}
+    _cachedVector:list[int] = []
 
     def __init__(self,qid:str,num_retrieved:int):
         self.qid = qid
@@ -41,8 +42,10 @@ class RelevanceVector:
         self.grades = []
         self.subtopics = []
         self.dids = []
+        self._cachedVector = []
     
     def append(self,position:int,did:str,grades=None):
+        self._cachedVector = []
         if grades is not None:
             for st,grade in grades.items():
                 if not st in self.subtopics:
@@ -60,6 +63,8 @@ class RelevanceVector:
             self.positions.append(pos)
     
     def vector(self,grade:float=None,subtopic:int=None) -> list[int]:
+        if len(self._cachedVector) > 0:
+            return self._cachedVector
         retval:list[int] = []
         subtopic = 0 if subtopic is None else subtopic
         if len(self.grades) == 0:
@@ -74,9 +79,11 @@ class RelevanceVector:
             if pos.is_valid(grade,subtopic):
                 if (pos.position is None):
                     retval.append(None)
+        self._cachedVector = retval
         return retval
 
     def stvector(self,position:int = 0, reverse:bool = False, grade:float=None) -> list[int]:
+        self._cachedVector = []
         processed_position = position if (reverse is False) else -1 * (position+1)
         retval:list[int] = []
         num_subtopics = len(self.subtopics)
