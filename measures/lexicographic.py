@@ -8,10 +8,13 @@ from measures.util import GradeType
 #
 # LEXICOGRAPHIC EVALUATION
 # 
-def lexirecall(x: list[int],y: list[int]) -> float:
+def lexirecall(x: list[int],y: list[int], x_rr:int, y_rr:int) -> float:
+    if x_rr > y_rr:
+        return 1
+    elif x_rr < y_rr:
+        return -1
     m:int = len(x)
-    for itr in range(m):
-        i:int = -1 * (itr+1) 
+    for i in range(x_rr-1,-1,-1):
         if (x[i] is None) and (y[i] is None):
             continue
         if (x[i] is None):

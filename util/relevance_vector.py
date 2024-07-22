@@ -33,7 +33,8 @@ class RelevanceVector:
     subtopics:list[int] = []
     dids:list[str] = []
     grade_histogram = {}
-    _cachedVector:list[int] = []
+    _cached_vector:list[int] = []
+    _cached_rel_ret:int = 0
 
     def __init__(self,qid:str,num_retrieved:int):
         self.qid = qid
@@ -42,10 +43,12 @@ class RelevanceVector:
         self.grades = []
         self.subtopics = []
         self.dids = []
-        self._cachedVector = []
+        self._cached_vector = []
+        self._cached_rel_ret = 0
     
     def append(self,position:int,did:str,grades=None):
-        self._cachedVector = []
+        self._cached_vector = []
+        self._cached_rel_ret = 0
         if grades is not None:
             for st,grade in grades.items():
                 if not st in self.subtopics:
@@ -63,27 +66,36 @@ class RelevanceVector:
             self.positions.append(pos)
     
     def vector(self,grade:float=None,subtopic:int=None) -> list[int]:
-        if len(self._cachedVector) > 0:
-            return self._cachedVector
+        if len(self._cached_vector) > 0:
+            return self._cached_vector
         retval:list[int] = []
         subtopic = 0 if subtopic is None else subtopic
         if len(self.grades) == 0:
             sys.stderr.write(f"no grade information for qid: {self.qid}\n")
         grade = min(self.grades) if grade is None else grade
+        rel_rel: int = 0
         for pos in self.positions:
             if pos.is_valid(grade,subtopic):
                 if (pos.position is not None):
                     retval.append(pos.position)
+                    rel_ret = rel_ret + 1
         retval.sort()
         for pos in self.positions:
             if pos.is_valid(grade,subtopic):
                 if (pos.position is None):
                     retval.append(None)
-        self._cachedVector = retval
+        self._cached_vector = retval
+        self._cached_rel_ret = rel_ret
         return retval
 
+    def rel_ret(self,grade:float=None,subtopic:int=None) -> int:
+        if len(self._cached_vector) == 0:
+            self.vector(grade,subtopic)
+        return self._cached_rel_ret
+
     def stvector(self,position:int = 0, reverse:bool = False, grade:float=None) -> list[int]:
-        self._cachedVector = []
+        self._cached_vector = []
+        self._cached_rel_ret = 0
         processed_position = position if (reverse is False) else -1 * (position+1)
         retval:list[int] = []
         num_subtopics = len(self.subtopics)

@@ -10,9 +10,11 @@ from measures.util import GradeType
 
 def compute_preference(x: RelevanceVector,y: RelevanceVector,preference: str) -> float:
     xx: list[int] = x.vector()
+    xx_rr: int = x.rel_ret()
     yy: list[int] = y.vector()
+    yy_rr: int = y.rel_ret()
     if preference == "lexirecall" or preference == "LR" or preference == "sgnLR":
-        return lexirecall(xx,yy)
+        return lexirecall(xx,yy,xx_rr,yy_rr)
     if preference == "lexiprecision" or preference == "sgnLP":
         return lexiprecision(xx,yy)
     if preference == "rrlexiprecision" or preference == "rrLP":
