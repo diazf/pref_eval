@@ -141,7 +141,7 @@ For [Lexicographic Recall](https://arxiv.org/abs/2302.11370),
 ```
 @misc{diaz:lexirecall,
       title={Recall, Robustness, and Lexicographic Evaluation}, 
-      author={Fernando Diaz and Bhaskar Mitra},
+      author={Fernando Diaz, Michael D. Ekstrand, and Bhaskar Mitra},
       year={2023},
       eprint={2302.11370},
       archivePrefix={arXiv},
