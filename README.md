@@ -140,11 +140,17 @@ For [Recall-Paired Preference](https://841.io/doc/rpp.pdf),
 For [Lexicographic Recall](https://arxiv.org/abs/2302.11370),
 ```
 @misc{diaz:lexirecall,
-author = {Diaz, Fernando and Ekstrand, Michael D. and Mitra, Bhaskar},
-title = {Recall, Robustness, and Lexicographic Evaluation},
-year = {2025},
-journal = {ACM Trans. Recomm. Syst.},
-month = apr
+      author = {Diaz, Fernando and Ekstrand, Michael D. and Mitra, Bhaskar},
+      title = {Recall, Robustness, and Lexicographic Evaluation},
+      year = {2025},
+      publisher = {Association for Computing Machinery},
+      address = {New York, NY, USA},
+      url = {https://doi.org/10.1145/3728373},
+      doi = {10.1145/3728373},
+      note = {Just Accepted},
+      journal = {ACM Trans. Recomm. Syst.},
+      month = apr,
+      keywords = {evaluation, recall, robustness}
 }
 ```
 For [Lexicographic Precision](https://arxiv.org/abs/2306.07908),
